@@ -170,14 +170,6 @@ SELECT EXISTS (
 ALTER TABLE Category 
 ADD COLUMN IF NOT EXISTS UpdatedAt TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
 
--- Step 5: Create default system categories if they don't exist
-INSERT IGNORE INTO Category (CategoryName, UserID, DateCreated, IsDeleted) 
-VALUES 
-('Education', NULL, NOW(), FALSE),
-('Emergency', NULL, NOW(), FALSE),
-('Travel', NULL, NOW(), FALSE),
-('Housing', NULL, NOW(), FALSE);
-
 -- Step 6: Update SavedAmount in Goal table based on SavingsTransaction
 -- This will fix any goals that have incorrect SavedAmount values
 UPDATE Goal g
